@@ -1,23 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import Sidebar from './components/Sidebar';
+import DashboardContent from './components/DashboardContent';
+import UsersContent from './components/UsersContent';
+import UserDetails from './components/UserDetails';
 
 function App() {
+  const [selectedSection, setSelectedSection] = useState('home');
+  const [selectedUser, setSelectedUser] = useState(null);
+
+  const handleBack = () => {
+    setSelectedUser(null);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="flex h-screen bg-gray-100">
+      <Sidebar onSelectSection={setSelectedSection} />
+      {selectedSection === 'home' && <DashboardContent />}
+      {selectedSection === 'users' && (
+        <div className="flex-1 p-6">
+          {!selectedUser ? (
+            <UsersContent onSelectUser={setSelectedUser} />
+          ) : (
+            <UserDetails userId={selectedUser} onBack={handleBack} />
+          )}
+        </div>
+      )}
     </div>
   );
 }
