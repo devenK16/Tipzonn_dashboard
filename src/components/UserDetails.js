@@ -186,6 +186,10 @@ function UserDetails({ userId, onBack }) {
               />
             </div>
           </div>
+          
+          <button onClick={handleUpdateStatus} className="bg-green-500 text-white p-2 rounded mt-4">
+            Update Status
+          </button>
 
           <div className="mt-4">
             <label className="block text-gray-700">Upload Image</label>
@@ -212,9 +216,6 @@ function UserDetails({ userId, onBack }) {
             </div>
           )}
 
-          <button onClick={handleUpdateStatus} className="bg-green-500 text-white p-2 rounded mt-4">
-            Update Status
-          </button>
         </div>
       )}
 
